@@ -49,7 +49,6 @@ class Deck():
             message = "Whoops! No more cards to draw! Reset the deck using <deck>.reset()"
             raise Exception(message)
         
-        self.shuffle()
         random_index = random.randint(0,len(self.cards)-1)
         card = self.cards.pop(random_index)
         
@@ -101,16 +100,24 @@ class Card():
     
 if __name__ == "main":
     d = Deck()
+    print("Original cards: {}".format(d.cards))
     
-    # This should break
+    # Shuffle
+    d.shuffle()
+    print("Shuffled cards: {}".format(d.cards))
+    
     for _ in range(52):
         d.dealOneCard()
+    # This should break
     d.dealOneCard()
     
     # # # Reset the deck
     d.reset()
+    print("Original cards: {}".format(d.cards))
+    d.shuffle2()
+    print("Shuffled cards: {}".format(d.cards))
     
-    # This should break again
     for _ in range(52):
         d.dealOneCard()
+    # This should break again
     d.dealOneCard()
